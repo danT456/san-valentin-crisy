@@ -11,7 +11,7 @@ body {
     background-image: url('corazones.jpg');
     background-size: cover;
     background-position: center;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.4);
     background-blend-mode: darken;
     display: flex;
     flex-direction: column;
@@ -20,65 +20,66 @@ body {
     height: 100vh;
     overflow: hidden;
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     transition: background 1s ease;
 }
 
 .caja {
-    background: rgba(255,255,255,0.9);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
-    animation: aparecer 1s ease;
+    background: rgba(255,255,255,0.95);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0px 15px 40px rgba(0,0,0,0.4);
+    animation: aparecer 0.8s ease;
+    max-width: 800px;
 }
 
 #pregunta {
-    font-size: 60px;
+    font-size: 55px;
     font-weight: bold;
-    color: #ff4d88;
+    color: #ff2e7a;
 }
 
 #mensaje {
-    font-size: 80px;
+    font-size: 70px;
     font-weight: bold;
-    color: #ff0066;
+    color: #ff0055;
 }
 
 #gif-container {
-    width: 350px;
-    height: 350px;
+    width: 380px;
+    height: 380px;
     background: url('https://i.pinimg.com/originals/91/cb/7a/91cb7a20957a184e55f1bfe3b1dead0e.gif') center/cover no-repeat;
-    margin-top: 20px;
-    border-radius: 20px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    margin-top: 25px;
+    border-radius: 25px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.4);
 }
 
 #botones {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 button {
-    font-size: 28px;
-    padding: 15px 30px;
-    margin: 10px;
+    font-size: 26px;
+    padding: 15px 35px;
+    margin: 15px;
     cursor: pointer;
     border: none;
-    border-radius: 15px;
-    transition: transform 0.2s ease, background 0.3s ease;
+    border-radius: 20px;
+    transition: all 0.25s ease;
 }
 
 #si {
-    background-color: #ff66b2;
+    background: linear-gradient(45deg, #ff4da6, #ff0066);
     color: white;
+    box-shadow: 0 5px 15px rgba(255,0,102,0.5);
 }
 
 #si:hover {
-    transform: scale(1.1);
-    background-color: #ff3385;
+    transform: scale(1.15);
 }
 
 #no {
-    background-color: #cccccc;
+    background-color: #dddddd;
 }
 
 #mensaje-container {
@@ -86,8 +87,8 @@ button {
 }
 
 @keyframes aparecer {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -95,18 +96,18 @@ button {
 <body>
 
 <div id="pregunta-container" class="caja">
-    <div id="pregunta">Cris, will you be my Valentine?</div>
+    <div id="pregunta">Cris… will you be my Valentine? 💘</div>
 </div>
 
 <div id="gif-container"></div>
 
 <div id="botones">
-    <button id="si" onclick="aceptar()">Si</button>
-    <button id="no" onmouseover="moverBoton(this)">No :c</button>
+    <button id="si" onclick="aceptar()">Sí 💖</button>
+    <button id="no" onmouseover="moverBoton(this)">No 🥺</button>
 </div>
 
 <div id="mensaje-container" class="caja">
-    <div id="mensaje">Buena eleccion uu</div>
+    <div id="mensaje">Sabía que dirías que sí 💞</div>
 </div>
 
 <script>
@@ -117,13 +118,11 @@ function aceptar() {
 
     document.getElementById("gif-container").style.backgroundImage =
         "url('https://www.icegif.com/wp-content/uploads/2024/05/cinnamoroll-icegif-1.gif')";
-
-    document.body.style.backgroundImage = "url('corazones.jpg')";
 }
 
 function moverBoton(boton) {
-    let x = Math.random() * (window.innerWidth - 150);
-    let y = Math.random() * (window.innerHeight - 100);
+    let x = Math.random() * (window.innerWidth - 200);
+    let y = Math.random() * (window.innerHeight - 120);
     boton.style.position = "absolute";
     boton.style.left = x + "px";
     boton.style.top = y + "px";
