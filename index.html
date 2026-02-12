@@ -20,98 +20,93 @@ body {
     height: 100vh;
     overflow: hidden;
     text-align: center;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Arial', sans-serif;
+    transition: background 1s ease;
 }
 
 .caja {
     background: rgba(255,255,255,0.95);
     padding: 40px;
     border-radius: 25px;
-    box-shadow: 0px 15px 40px rgba(0,0,0,0.4);
+    box-shadow: 0px 15px 35px rgba(0,0,0,0.3);
     animation: aparecer 0.8s ease;
-    max-width: 800px;
-    position: relative;
-    z-index: 2;
 }
 
 #pregunta {
     font-size: 55px;
     font-weight: bold;
-    color: #ff2e7a;
+    color: #ff4d88;
 }
 
 #mensaje {
-    font-size: 70px;
+    font-size: 75px;
     font-weight: bold;
-    color: #ff0055;
+    color: #ff0066;
+    animation: latido 1s infinite;
 }
 
 #gif-container {
-    width: 380px;
-    height: 380px;
-    background: url('https://i.pinimg.com/originals/91/cb/7a/91cb7a20957a184e55f1bfe3b1dead0e.gif') center/cover no-repeat;
-    margin-top: 25px;
-    border-radius: 25px;
-    box-shadow: 0px 8px 25px rgba(0,0,0,0.4);
-    z-index: 2;
+    width: 350px;
+    height: 350px;
+    background: url('https://media.tenor.com/W6j9Pq8kQp8AAAAC/love-heart.gif') center/cover no-repeat;
+    margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
 }
 
 #botones {
-    margin-top: 25px;
-    z-index: 2;
+    margin-top: 20px;
 }
 
 button {
     font-size: 26px;
-    padding: 15px 35px;
-    margin: 15px;
+    padding: 15px 30px;
+    margin: 10px;
     cursor: pointer;
     border: none;
-    border-radius: 20px;
-    transition: all 0.25s ease;
+    border-radius: 15px;
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 #si {
-    background: linear-gradient(45deg, #ff4da6, #ff0066);
+    background-color: #ff66b2;
     color: white;
-    box-shadow: 0 5px 15px rgba(255,0,102,0.5);
 }
 
 #no {
-    background-color: #dddddd;
+    background-color: #cccccc;
 }
 
 #mensaje-container {
     display: none;
 }
 
+/* Animaciones */
+
 @keyframes aparecer {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* 💕 Corazones flotando */
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Corazones flotando */
+
 .corazon {
     position: absolute;
-    color: #ff4da6;
-    font-size: 20px;
-    animation: flotar 6s linear infinite;
-    opacity: 0.8;
-    z-index: 1;
+    color: red;
+    font-size: 30px;
+    animation: flotar 4s linear infinite;
 }
 
 @keyframes flotar {
-    0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-    }
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
 </head>
@@ -119,22 +114,24 @@ button {
 <body>
 
 <div id="pregunta-container" class="caja">
-    <div id="pregunta">Cris… will you be my Valentine? 💘</div>
+    <div id="pregunta">Cris, will you be my Valentine?</div>
 </div>
 
 <div id="gif-container"></div>
 
 <div id="botones">
-    <button id="si" onclick="aceptar()">Sí 💖</button>
-    <button id="no" onmouseover="moverBoton(this)">No 🥺</button>
+    <button id="si" onclick="aceptar()">Sí ❤️</button>
+    <button id="no" onmouseover="moverBoton(this)">No 😢</button>
 </div>
 
 <div id="mensaje-container" class="caja">
-    <div id="mensaje">Sabía que dirías que sí 💞</div>
+    <div id="mensaje">Sabía que dirías que sí 💖</div>
 </div>
 
 <script>
-let escala = 1;
+
+let tamañoSi = 1;
+let tamañoNo = 1;
 
 function aceptar() {
     document.getElementById("mensaje-container").style.display = "block";
@@ -142,39 +139,51 @@ function aceptar() {
     document.getElementById("botones").style.display = "none";
 
     document.getElementById("gif-container").style.backgroundImage =
-        "url('https://www.icegif.com/wp-content/uploads/2024/05/cinnamoroll-icegif-1.gif')";
+        "url('https://media.tenor.com/0AVbKGY_MxMAAAAC/couple-love.gif')";
+
+    document.body.style.backgroundImage =
+        "url('https://images.unsplash.com/photo-1518199266791-5375a83190b7')";
+    
+    crearCorazones();
 }
 
 function moverBoton(boton) {
-    let x = Math.random() * (window.innerWidth - 200);
-    let y = Math.random() * (window.innerHeight - 120);
 
+    // Se mueve
+    let x = Math.random() * (window.innerWidth - 150);
+    let y = Math.random() * (window.innerHeight - 100);
     boton.style.position = "absolute";
     boton.style.left = x + "px";
     boton.style.top = y + "px";
 
-    // 💖 Hacer crecer el botón "Sí"
-    escala += 0.15;
-    document.getElementById("si").style.transform = "scale(" + escala + ")";
+    // Se hace más pequeño
+    tamañoNo -= 0.1;
+    boton.style.transform = "scale(" + tamañoNo + ")";
+
+    // El botón sí crece
+    tamañoSi += 0.1;
+    document.getElementById("si").style.transform =
+        "scale(" + tamañoSi + ")";
 }
 
-// 💕 Generar corazones constantemente
-setInterval(function() {
-    let corazon = document.createElement("div");
-    corazon.classList.add("corazon");
-    corazon.innerHTML = "💖";
-    corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.fontSize = (Math.random() * 20 + 15) + "px";
-    corazon.style.animationDuration = (Math.random() * 3 + 4) + "s";
+function crearCorazones() {
+    setInterval(() => {
+        let corazon = document.createElement("div");
+        corazon.classList.add("corazon");
+        corazon.innerHTML = "❤️";
+        corazon.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(corazon);
 
-    document.body.appendChild(corazon);
+        setTimeout(() => {
+            corazon.remove();
+        }, 4000);
 
-    setTimeout(() => {
-        corazon.remove();
-    }, 7000);
-}, 500);
+    }, 300);
+}
+
 </script>
 
 </body>
 </html>
+
 
